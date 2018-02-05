@@ -3,7 +3,6 @@
 //  Ash
 //
 //  Created by Oliver ONeill on 3/2/18.
-//  Copyright © 2018 Oliver ONeill. All rights reserved.
 //
 
 import UIKit
