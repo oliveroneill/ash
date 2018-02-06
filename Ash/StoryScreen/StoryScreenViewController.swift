@@ -34,6 +34,10 @@ class StoryScreenViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func onRefreshPressed(_ sender: AnyObject) {
+        viewModel.refresh()
+    }
+
     @IBAction func onButtonPressed(_ sender: AnyObject) {
         viewModel.onStoryPressed()
     }
