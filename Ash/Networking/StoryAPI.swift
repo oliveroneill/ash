@@ -5,8 +5,6 @@
 //  Created by Oliver ONeill on 4/2/18.
 //
 
-import UIKit
-
 // TODO: propogate errors through here
 protocol StoryAPI {
     /// A callback for retrieving a list of story IDs
