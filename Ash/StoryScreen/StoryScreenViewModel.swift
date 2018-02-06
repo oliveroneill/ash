@@ -88,6 +88,7 @@ class StoryScreenViewModel {
                 return
             }
             // Open the URL in the browser
+            // TODO: this may be considered view code
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
