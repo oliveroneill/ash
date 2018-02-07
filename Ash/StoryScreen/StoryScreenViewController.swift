@@ -23,7 +23,8 @@ class StoryScreenViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var backgroundButton: RoundButton!
-
+    @IBOutlet weak var refreshButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.onStateChange = self.onStateChange
@@ -69,6 +70,7 @@ class StoryScreenViewController: UIViewController {
         dateLabel.isHidden = true
         errorMessageLabel.isHidden = true
         backgroundButton.isHidden = true
+        refreshButton.isHidden = true
         stopLoading()
     }
 
@@ -83,12 +85,14 @@ class StoryScreenViewController: UIViewController {
     }
 
     private func showError(message: String) {
+        refreshButton.isHidden = false
         errorMessageLabel.isHidden = false
         errorMessageLabel.text = message
     }
 
     private func showStory(story: StoryViewModel) {
         // Show views
+        refreshButton.isHidden = false
         titleLabel.isHidden = false
         authorLabel.isHidden = false
         dateLabel.isHidden = false

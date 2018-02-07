@@ -116,6 +116,7 @@
                         <outlet property="backgroundButton" destination="Ju8-B1-Vbo" id="dWt-A5-J1C"/>
                         <outlet property="dateLabel" destination="ISs-b2-Ph1" id="8BQ-3I-B12"/>
                         <outlet property="errorMessageLabel" destination="uqK-2F-Gy8" id="FOl-ef-8SL"/>
+                        <outlet property="refreshButton" destination="B9Q-5J-YgG" id="V6g-ge-e3q"/>
                         <outlet property="titleLabel" destination="fmh-e3-KN1" id="kEf-au-f8z"/>
                     </connections>
                 </viewController>
