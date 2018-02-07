@@ -11,6 +11,7 @@ There's a lot of things I'd like to add to this project:
 - Move all UI work to code
 - Better tests around state changes
 - Error propogation
+- Localisation
 - Accessibility
 
 I may put this on the App Store eventually, but it's currently just a
