@@ -15,7 +15,7 @@ import UIKit
  * entirely in code.
  */
 class StoryScreenViewController: UIViewController {
-    private let viewModel = StoryScreenViewModel()
+    private let viewModel = StoryScreenDataSource()
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -27,8 +27,8 @@ class StoryScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onStateChange = { [unowned self] (state) in
-            self.onStateChange(state: state)
+        viewModel.onViewModelChange = { [unowned self] (viewModel) in
+            self.onViewModelChange(viewModel: viewModel)
         }
         viewModel.onViewAppeared()
     }
@@ -45,64 +45,30 @@ class StoryScreenViewController: UIViewController {
         viewModel.onStoryPressed()
     }
 
-    private func onStateChange(state: StoryScreenState) {
+    private func onViewModelChange(viewModel: StoryScreenViewModel) {
         // Change state on main thread
         DispatchQueue.main.async(execute: { [unowned self] in
-            // Clear all views
-            self.clearScreen()
-            // Run through states
-            switch state {
-            case .loading:
-                self.startLoading()
-                break
-            case .error(let message):
-                self.showError(message: message)
-                break
-            case .loaded(let story):
-                self.showStory(story: story)
-                break
+            // Set all view values based on the view model
+            if viewModel.activityIndicatorAnimated {
+                self.setNetworkActivityIndicator()
+                self.activityIndicator.startAnimating()
+            } else {
+                self.setNetworkActivityIndicator(visible: false)
+                self.activityIndicator.stopAnimating()
             }
+            // Text values
+            self.titleLabel.text = viewModel.titleLabelText
+            self.authorLabel.text = viewModel.authorLabelText
+            self.dateLabel.text = viewModel.dateLabelText
+            self.errorMessageLabel.text = viewModel.errorMessageText
+            // Which views are being displayed
+            self.errorMessageLabel.isHidden = viewModel.errorMessageLabelHidden
+            self.refreshButton.isHidden = viewModel.refreshButtonHidden
+            self.titleLabel.isHidden = viewModel.titleLabelHidden
+            self.authorLabel.isHidden = viewModel.authorLabelHidden
+            self.dateLabel.isHidden = viewModel.dateLabelHidden
+            self.backgroundButton.isHidden = viewModel.backgroundButtonHidden
         })
-    }
-
-    private func clearScreen() {
-        // hide views
-        titleLabel.isHidden = true
-        authorLabel.isHidden = true
-        dateLabel.isHidden = true
-        errorMessageLabel.isHidden = true
-        backgroundButton.isHidden = true
-        refreshButton.isHidden = true
-        stopLoading()
-    }
-
-    private func startLoading() {
-        setNetworkActivityIndicator()
-        activityIndicator.startAnimating()
-    }
-
-    private func stopLoading() {
-        setNetworkActivityIndicator(visible: false)
-        activityIndicator.stopAnimating()
-    }
-
-    private func showError(message: String) {
-        refreshButton.isHidden = false
-        errorMessageLabel.isHidden = false
-        errorMessageLabel.text = message
-    }
-
-    private func showStory(story: StoryViewModel) {
-        // Show views
-        refreshButton.isHidden = false
-        titleLabel.isHidden = false
-        authorLabel.isHidden = false
-        dateLabel.isHidden = false
-        backgroundButton.isHidden = false
-        // Set values
-        titleLabel.text = story.title
-        authorLabel.text = story.authorText
-        dateLabel.text = story.dateText
     }
 
     private func setNetworkActivityIndicator(visible: Bool = true) {

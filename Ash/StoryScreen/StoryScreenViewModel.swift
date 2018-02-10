@@ -33,6 +33,7 @@ struct StoryViewModel: Equatable {
         url = story.url
     }
 
+    /// Used for testing
     static func ==(lhs: StoryViewModel, rhs: StoryViewModel) -> Bool {
         return lhs.authorText == rhs.authorText &&
             lhs.dateText == rhs.dateText && lhs.title == rhs.title &&
@@ -41,85 +42,100 @@ struct StoryViewModel: Equatable {
 }
 
 /**
- * A view model for `StoryScreenViewController`. This contains the interaction
- * logic for the controller and sends `StoryViewModel`s to the controller for
- * presentation.
+ * A view model for `StoryScreenViewController`
  */
+struct StoryScreenViewModel: Equatable {
+    // Values
+    let errorMessageText: String?
+    let titleLabelText: String?
+    let authorLabelText: String?
+    let dateLabelText: String?
+    // Hidden and visible views
+    let titleLabelHidden: Bool
+    let authorLabelHidden: Bool
+    let dateLabelHidden: Bool
+    let errorMessageLabelHidden: Bool
+    let backgroundButtonHidden: Bool
+    let refreshButtonHidden: Bool
+    /// Whether network indicator is displayed or not
+    let activityIndicatorAnimated: Bool
 
-class StoryScreenViewModel {
-    /// Set this property to receive state change events
-    var onStateChange: ((StoryScreenState) -> Void)?
-    private let api: StoryAPI
-    // The current state of the view model
-    private var currentState: StoryScreenState = .loading
-
-    /**
-     * Create a StoryScreenViewModel.
-     *
-     * - Parameter api: Used to interact with the network
-     */
-    init(api: StoryAPI = HackerNewsAPI()) {
-        self.api = api
+    /// This is private so that you must specify the view based on the state
+    private init(titleLabelText: String?,
+                 authorLabelText: String?,
+                 dateLabelText: String?,
+                 errorMessageText: String? = nil,
+                 activityIndicatorAnimated: Bool = false,
+                 errorMessageLabelHidden: Bool = true,
+                 refreshButtonHidden: Bool = true,
+                 titleLabelHidden: Bool = true,
+                 authorLabelHidden: Bool = true,
+                 dateLabelHidden: Bool = true,
+                 backgroundButtonHidden: Bool = true) {
+        self.errorMessageText = errorMessageText
+        self.titleLabelText = titleLabelText
+        self.authorLabelText = authorLabelText
+        self.dateLabelText = dateLabelText
+        // This will determine if the loading spinner is spinning and animated
+        self.activityIndicatorAnimated = activityIndicatorAnimated
+        // Whether the views are visible or hidden
+        self.titleLabelHidden = titleLabelHidden
+        self.authorLabelHidden = authorLabelHidden
+        self.dateLabelHidden = dateLabelHidden
+        self.errorMessageLabelHidden = errorMessageLabelHidden
+        self.backgroundButtonHidden = backgroundButtonHidden
+        self.refreshButtonHidden = refreshButtonHidden
     }
 
-    /**
-     * Called when the view is on screen
-     */
-    func onViewAppeared() {
-        loadNewStory()
-    }
-
-    /**
-     * Refresh the currently displayed story
-     */
-    func refresh() {
-        loadNewStory()
-    }
-
-    /**
-     * Called when a story is pressed. This should open the story in the browser
-     */
-    func onStoryPressed() {
-        // Ensure we've successfully loaded a story before allowing press
-        if case .loaded(let story) = currentState {
-            // Check URL
-            guard let url = URL(string: story.url) else {
-                self.onStateChange?(.error("Something went wrong."))
-                return
-            }
-            // Open the URL in the browser
-            // TODO: this may be considered view code
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    init(state: StoryScreenState) {
+        // Convert the state into a set of properties that define how the view
+        // will appear
+        switch state {
+        case .loading:
+            self.init(
+                titleLabelText: nil, authorLabelText: nil,
+                dateLabelText: nil, errorMessageText: nil,
+                activityIndicatorAnimated: true
+            )
+            break
+        case .error(let message):
+            self.init(
+                titleLabelText: nil, authorLabelText: nil,
+                dateLabelText: nil, errorMessageText: message,
+                errorMessageLabelHidden: false, refreshButtonHidden: false
+            )
+            break
+        case .loaded(let story):
+            self.init(
+                titleLabelText: story.title,
+                authorLabelText: story.authorText,
+                dateLabelText: story.dateText,
+                errorMessageText: nil,
+                activityIndicatorAnimated: false,
+                errorMessageLabelHidden: true,
+                refreshButtonHidden: false,
+                titleLabelHidden: false,
+                authorLabelHidden: false,
+                dateLabelHidden: false,
+                backgroundButtonHidden: false
+            )
+            break
         }
     }
 
-    private func changeState(state: StoryScreenState) {
-        currentState = state
-        onStateChange?(state)
-    }
-
-    private func loadNewStory() {
-        // Set the state to loading
-        self.changeState(state: .loading)
-        // Get new stories from the API
-        api.getNewStories { [unowned self] (stories) in
-            if stories.count == 0 {
-                self.changeState(state: .error("Something went wrong."))
-            }
-            // Get random stories from the list of new ones
-            let randomIndex = Int(arc4random_uniform(UInt32(stories.count)))
-            let randomID = stories[randomIndex]
-            // Request story info
-            self.api.getStory(itemNumber: randomID, callback: { (story) in
-                // Ensure we successfully received a story
-                guard let s = story else {
-                    self.changeState(state: .error("Something went wrong."))
-                    return
-                }
-                // Update the state using view model
-                let viewModel = StoryViewModel(story: s)
-                self.changeState(state: .loaded(viewModel))
-            })
-        }
+    /// Used for testing
+    static func ==(lhs: StoryScreenViewModel, rhs: StoryScreenViewModel) -> Bool {
+        // Check every single property
+        return lhs.errorMessageText == rhs.errorMessageText &&
+            lhs.titleLabelText == rhs.titleLabelText &&
+            lhs.authorLabelText == rhs.authorLabelText &&
+            lhs.dateLabelText == rhs.dateLabelText &&
+            lhs.titleLabelHidden == rhs.titleLabelHidden &&
+            lhs.authorLabelHidden == rhs.authorLabelHidden &&
+            lhs.dateLabelHidden == rhs.dateLabelHidden &&
+            lhs.errorMessageLabelHidden == rhs.errorMessageLabelHidden &&
+            lhs.backgroundButtonHidden == rhs.backgroundButtonHidden &&
+            lhs.refreshButtonHidden == rhs.refreshButtonHidden &&
+            lhs.activityIndicatorAnimated == rhs.activityIndicatorAnimated
     }
 }

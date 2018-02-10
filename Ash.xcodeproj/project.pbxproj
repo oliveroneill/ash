@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D815893202F051A00B69D90 /* StoryScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D815892202F051A00B69D90 /* StoryScreenDataSource.swift */; };
+		7D815895202FB73C00B69D90 /* StoryScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D815894202FB73C00B69D90 /* StoryScreenViewModelTest.swift */; };
 		7DDDDF932025970300F026E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDF922025970300F026E0 /* AppDelegate.swift */; };
 		7DDDDF952025970300F026E0 /* StoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDF942025970300F026E0 /* StoryScreenViewController.swift */; };
 		7DDDDF982025970300F026E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DDDDF962025970300F026E0 /* Main.storyboard */; };
@@ -17,7 +19,7 @@
 		7DDDDFB720266E5200F026E0 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFB620266E5200F026E0 /* DateUtil.swift */; };
 		7DDDDFB9202697EC00F026E0 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFB8202697EC00F026E0 /* RoundButton.swift */; };
 		7DDDDFBB2026A0D700F026E0 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFBA2026A0D700F026E0 /* StoryAPI.swift */; };
-		7DDDDFBD2026A17800F026E0 /* StoryScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFBC2026A17800F026E0 /* StoryScreenViewModelTest.swift */; };
+		7DDDDFBD2026A17800F026E0 /* StoryScreenDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFBC2026A17800F026E0 /* StoryScreenDataSourceTest.swift */; };
 		7DDDDFBF2026A19300F026E0 /* HttpInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFBE2026A19300F026E0 /* HttpInterface.swift */; };
 		7DDDDFC12026A1A300F026E0 /* HttpURLSessionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFC02026A1A300F026E0 /* HttpURLSessionWrapper.swift */; };
 		7DDDDFC32026B6E300F026E0 /* HackerNewsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDDDFC22026B6E300F026E0 /* HackerNewsAPITest.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D815892202F051A00B69D90 /* StoryScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenDataSource.swift; sourceTree = "<group>"; };
+		7D815894202FB73C00B69D90 /* StoryScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenViewModelTest.swift; sourceTree = "<group>"; };
 		7DDDDF8F2025970300F026E0 /* Ash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DDDDF922025970300F026E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DDDDF942025970300F026E0 /* StoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +53,7 @@
 		7DDDDFB620266E5200F026E0 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		7DDDDFB8202697EC00F026E0 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		7DDDDFBA2026A0D700F026E0 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
-		7DDDDFBC2026A17800F026E0 /* StoryScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenViewModelTest.swift; sourceTree = "<group>"; };
+		7DDDDFBC2026A17800F026E0 /* StoryScreenDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenDataSourceTest.swift; sourceTree = "<group>"; };
 		7DDDDFBE2026A19300F026E0 /* HttpInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpInterface.swift; sourceTree = "<group>"; };
 		7DDDDFC02026A1A300F026E0 /* HttpURLSessionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpURLSessionWrapper.swift; sourceTree = "<group>"; };
 		7DDDDFC22026B6E300F026E0 /* HackerNewsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsAPITest.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				7DDDDFB620266E5200F026E0 /* DateUtil.swift */,
+				7D815892202F051A00B69D90 /* StoryScreenDataSource.swift */,
 				7DDDDF942025970300F026E0 /* StoryScreenViewController.swift */,
 				7DDDDFB42025BF8A00F026E0 /* StoryScreenViewModel.swift */,
 				7DDDDFB8202697EC00F026E0 /* RoundButton.swift */,
@@ -141,8 +146,9 @@
 		7DDDDFC62026B75E00F026E0 /* StoryScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7DDDDFBC2026A17800F026E0 /* StoryScreenViewModelTest.swift */,
+				7DDDDFBC2026A17800F026E0 /* StoryScreenDataSourceTest.swift */,
 				7DDDDFC820285EDD00F026E0 /* StoryViewModelTest.swift */,
+				7D815894202FB73C00B69D90 /* StoryScreenViewModelTest.swift */,
 			);
 			path = StoryScreen;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D815893202F051A00B69D90 /* StoryScreenDataSource.swift in Sources */,
 				7DDDDFB9202697EC00F026E0 /* RoundButton.swift in Sources */,
 				7DDDDFBB2026A0D700F026E0 /* StoryAPI.swift in Sources */,
 				7DDDDFC12026A1A300F026E0 /* HttpURLSessionWrapper.swift in Sources */,
@@ -276,7 +283,8 @@
 			files = (
 				7DDDDFC32026B6E300F026E0 /* HackerNewsAPITest.swift in Sources */,
 				7DDDDFC920285EDD00F026E0 /* StoryViewModelTest.swift in Sources */,
-				7DDDDFBD2026A17800F026E0 /* StoryScreenViewModelTest.swift in Sources */,
+				7D815895202FB73C00B69D90 /* StoryScreenViewModelTest.swift in Sources */,
+				7DDDDFBD2026A17800F026E0 /* StoryScreenDataSourceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
