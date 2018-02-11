@@ -5,8 +5,6 @@
 //  Created by Oliver ONeill on 3/2/18.
 //
 
-import UIKit
-
 /// The states that the StoryScreenViewModel can be in
 enum StoryScreenState {
     /// When loading a story

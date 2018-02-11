@@ -147,8 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				7DDDDFBC2026A17800F026E0 /* StoryScreenDataSourceTest.swift */,
-				7DDDDFC820285EDD00F026E0 /* StoryViewModelTest.swift */,
 				7D815894202FB73C00B69D90 /* StoryScreenViewModelTest.swift */,
+				7DDDDFC820285EDD00F026E0 /* StoryViewModelTest.swift */,
 			);
 			path = StoryScreen;
 			sourceTree = "<group>";
