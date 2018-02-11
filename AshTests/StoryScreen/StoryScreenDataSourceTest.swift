@@ -65,6 +65,7 @@ class StoryScreenDataSourceTest: XCTestCase {
         let expectation = XCTestExpectation(description: "Make network request")
         viewModel.onViewModelChange = { (viewModel) in
             // Then
+            // Ensure that the view model matches what's expected from the state
             if viewModel == StoryScreenViewModel(state: .loading) {
                 // Complete once we've reached this state
                 expectation.fulfill()
@@ -86,6 +87,7 @@ class StoryScreenDataSourceTest: XCTestCase {
             // Wait for loaded event
             let storyViewModel = StoryViewModel(story: self.model)
             let expected = StoryScreenState.loaded(storyViewModel)
+            // Ensure that the view model matches what's expected from the state
             if viewModel == StoryScreenViewModel(state: expected) {
                 expectation.fulfill()
             }
@@ -139,6 +141,7 @@ class StoryScreenDataSourceTest: XCTestCase {
             // Wait for loaded event
             let storyViewModel = StoryViewModel(story: self.model)
             let expected = StoryScreenState.loaded(storyViewModel)
+            // Ensure that the view model matches what's expected from the state
             if viewModel == StoryScreenViewModel(state: expected) {
                 expectation.fulfill()
             }
@@ -156,6 +159,7 @@ class StoryScreenDataSourceTest: XCTestCase {
             // Then
             // Wait for error event
             let expected = StoryScreenState.error(AshConstants.genericErrorMessage)
+            // Ensure that the view model matches what's expected from the state
             if viewModel == StoryScreenViewModel(state: expected) {
                 expectation.fulfill()
             }
