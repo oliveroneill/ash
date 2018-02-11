@@ -15,7 +15,7 @@ import UIKit
  * entirely in code.
  */
 class StoryScreenViewController: UIViewController {
-    private let viewModel = StoryScreenDataSource()
+    private let controller = StoryScreenController()
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -27,10 +27,10 @@ class StoryScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onViewModelChange = { [unowned self] (viewModel) in
+        controller.onViewModelChange = { [unowned self] (viewModel) in
             self.onViewModelChange(viewModel: viewModel)
         }
-        viewModel.onViewAppeared()
+        controller.onViewAppeared()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,11 +38,11 @@ class StoryScreenViewController: UIViewController {
     }
 
     @IBAction func onRefreshPressed(_ sender: AnyObject) {
-        viewModel.refresh()
+        controller.refresh()
     }
 
     @IBAction func onButtonPressed(_ sender: AnyObject) {
-        viewModel.onStoryPressed()
+        controller.onStoryPressed()
     }
 
     private func onViewModelChange(viewModel: StoryScreenViewModel) {

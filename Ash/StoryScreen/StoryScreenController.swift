@@ -1,5 +1,5 @@
 //
-//  StoryScreenDataSource.swift
+//  StoryScreenController.swift
 //  Ash
 //
 //  Created by Oliver ONeill on 10/2/18.
@@ -12,11 +12,11 @@ struct AshConstants {
     static let genericErrorMessage = "Something went wrong."
 }
 /**
- * A data source for `StoryScreenViewController`. This contains the interaction
- * logic for the controller and sends `StoryScreenViewModel`s to the controller
- * for presentation.
+ * A controller for `StoryScreenViewController`. This contains the interaction
+ * logic for the controller and sends `StoryScreenViewModel`s to the
+ * view-controller for presentation.
  */
-class StoryScreenDataSource {
+class StoryScreenController {
     /// Set this property to receive state change events
     var onViewModelChange: ((StoryScreenViewModel) -> Void)?
     private let api: StoryAPI

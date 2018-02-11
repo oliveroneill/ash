@@ -1,5 +1,5 @@
 //
-//  StoryScreenDataSourceTest.swift
+//  StoryScreenControllerTest.swift
 //  AshTests
 //
 //  Created by Oliver ONeill on 4/2/18.
@@ -14,7 +14,7 @@ import XCTest
  * TODO: need better tests around going from one state to another
  * TODO: need better tests around verifying that the correct requests are made
  */
-class StoryScreenDataSourceTest: XCTestCase {
+class StoryScreenControllerTest: XCTestCase {
     /// Input that we'll test
     private let model = Story(
         by: "Author Name",
@@ -61,9 +61,9 @@ class StoryScreenDataSourceTest: XCTestCase {
 
     func testOnViewAppearedLoading() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(loadForever: true))
+        let controller = StoryScreenController(api: FakeAPI(loadForever: true))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             // Ensure that the view model matches what's expected from the state
             if viewModel == StoryScreenViewModel(state: .loading) {
@@ -74,15 +74,15 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.onViewAppeared()
+        controller.onViewAppeared()
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testOnViewAppeared() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(story: model))
+        let controller = StoryScreenController(api: FakeAPI(story: model))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             // Wait for loaded event
             let storyViewModel = StoryViewModel(story: self.model)
@@ -93,15 +93,15 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.onViewAppeared()
+        controller.onViewAppeared()
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testOnViewAppearedError() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(story: nil))
+        let controller = StoryScreenController(api: FakeAPI(story: nil))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             // Wait for error event
             let expected = StoryScreenState.error(AshConstants.genericErrorMessage)
@@ -110,15 +110,15 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.onViewAppeared()
+        controller.onViewAppeared()
         wait(for: [expectation], timeout: 1.0)
     }
 
     func tesRefreshLoading() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(loadForever: true))
+        let controller = StoryScreenController(api: FakeAPI(loadForever: true))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             if viewModel == StoryScreenViewModel(state: .loading) {
                 // Complete once we've reached this state
@@ -128,15 +128,15 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.refresh()
+        controller.refresh()
         wait(for: [expectation], timeout: 1.0)
     }
 
     func tesRefresh() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(story: model))
+        let controller = StoryScreenController(api: FakeAPI(story: model))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             // Wait for loaded event
             let storyViewModel = StoryViewModel(story: self.model)
@@ -147,15 +147,15 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.refresh()
+        controller.refresh()
         wait(for: [expectation], timeout: 1.0)
     }
 
     func tesRefreshError() {
         // Given
-        let viewModel = StoryScreenDataSource(api: FakeAPI(story: nil))
+        let controller = StoryScreenController(api: FakeAPI(story: nil))
         let expectation = XCTestExpectation(description: "Make network request")
-        viewModel.onViewModelChange = { (viewModel) in
+        controller.onViewModelChange = { (viewModel) in
             // Then
             // Wait for error event
             let expected = StoryScreenState.error(AshConstants.genericErrorMessage)
@@ -165,7 +165,8 @@ class StoryScreenDataSourceTest: XCTestCase {
             }
         }
         // When
-        viewModel.refresh()
+        controller.refresh()
         wait(for: [expectation], timeout: 1.0)
     }
 }
+
