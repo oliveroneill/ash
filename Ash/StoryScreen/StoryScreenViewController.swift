@@ -27,8 +27,8 @@ class StoryScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller.onViewModelChange = { [unowned self] (viewModel) in
-            self.onViewModelChange(viewModel: viewModel)
+        controller.onViewModelChange = { [weak self] (viewModel) in
+            self?.onViewModelChange(viewModel: viewModel)
         }
         controller.onViewAppeared()
     }
