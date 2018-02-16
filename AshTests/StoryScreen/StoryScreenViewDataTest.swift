@@ -27,6 +27,7 @@ class StoryScreenViewDataTest: XCTestCase {
         XCTAssertEqual(viewData.backgroundButtonHidden, true)
         XCTAssertEqual(viewData.refreshButtonHidden, true)
         XCTAssertEqual(viewData.activityIndicatorAnimated, true)
+        XCTAssertEqual(viewData.statusBarActivityIndicatorAnimated, true)
     }
 
     func testInitErrorState() {
@@ -47,6 +48,7 @@ class StoryScreenViewDataTest: XCTestCase {
         XCTAssertEqual(viewData.backgroundButtonHidden, true)
         XCTAssertEqual(viewData.refreshButtonHidden, false)
         XCTAssertEqual(viewData.activityIndicatorAnimated, false)
+        XCTAssertEqual(viewData.statusBarActivityIndicatorAnimated, false)
     }
 
     func testInitLoadedState() {
@@ -74,5 +76,6 @@ class StoryScreenViewDataTest: XCTestCase {
         XCTAssertEqual(viewData.backgroundButtonHidden, false)
         XCTAssertEqual(viewData.refreshButtonHidden, false)
         XCTAssertEqual(viewData.activityIndicatorAnimated, false)
+        XCTAssertEqual(viewData.statusBarActivityIndicatorAnimated, false)
     }
 }

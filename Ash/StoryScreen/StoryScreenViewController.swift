@@ -50,12 +50,11 @@ class StoryScreenViewController: UIViewController {
         DispatchQueue.main.async(execute: { [unowned self] in
             // Set all view values based on the view model
             if viewData.activityIndicatorAnimated {
-                self.setNetworkActivityIndicator()
                 self.activityIndicator.startAnimating()
             } else {
-                self.setNetworkActivityIndicator(visible: false)
                 self.activityIndicator.stopAnimating()
             }
+            self.setNetworkActivityIndicator(visible: viewData.statusBarActivityIndicatorAnimated)
             // Text values
             self.titleLabel.text = viewData.titleLabelText
             self.authorLabel.text = viewData.authorLabelText

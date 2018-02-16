@@ -1,5 +1,5 @@
 //
-//  StoryScreenController.swift
+//  StoryScreenViewModel.swift
 //  Ash
 //
 //  Created by Oliver ONeill on 10/2/18.

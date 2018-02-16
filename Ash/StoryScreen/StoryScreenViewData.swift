@@ -40,7 +40,8 @@ struct StoryViewData: Equatable {
 }
 
 /**
- * View data for `StoryScreenViewController`
+ * View data for `StoryScreenViewController`. This is all the information needed
+ * for the story screen
  */
 struct StoryScreenViewData: Equatable {
     // Values
@@ -55,8 +56,10 @@ struct StoryScreenViewData: Equatable {
     let errorMessageLabelHidden: Bool
     let backgroundButtonHidden: Bool
     let refreshButtonHidden: Bool
-    /// Whether network indicator is displayed or not
+    /// Whether the loading spinner is displayed or not
     let activityIndicatorAnimated: Bool
+    /// Whether the status bar network activity indicator is displayed or not
+    let statusBarActivityIndicatorAnimated: Bool
 
     /// This is private so that you must specify the view based on the state
     private init(titleLabelText: String?,
@@ -64,6 +67,7 @@ struct StoryScreenViewData: Equatable {
                  dateLabelText: String?,
                  errorMessageText: String? = nil,
                  activityIndicatorAnimated: Bool = false,
+                 statusBarActivityIndicatorAnimated: Bool = false,
                  errorMessageLabelHidden: Bool = true,
                  refreshButtonHidden: Bool = true,
                  titleLabelHidden: Bool = true,
@@ -76,6 +80,7 @@ struct StoryScreenViewData: Equatable {
         self.dateLabelText = dateLabelText
         // This will determine if the loading spinner is spinning and animated
         self.activityIndicatorAnimated = activityIndicatorAnimated
+        self.statusBarActivityIndicatorAnimated = statusBarActivityIndicatorAnimated
         // Whether the views are visible or hidden
         self.titleLabelHidden = titleLabelHidden
         self.authorLabelHidden = authorLabelHidden
@@ -93,7 +98,8 @@ struct StoryScreenViewData: Equatable {
             self.init(
                 titleLabelText: nil, authorLabelText: nil,
                 dateLabelText: nil, errorMessageText: nil,
-                activityIndicatorAnimated: true
+                activityIndicatorAnimated: true,
+                statusBarActivityIndicatorAnimated: true
             )
             break
         case .error(let message):
@@ -110,6 +116,7 @@ struct StoryScreenViewData: Equatable {
                 dateLabelText: story.dateText,
                 errorMessageText: nil,
                 activityIndicatorAnimated: false,
+                statusBarActivityIndicatorAnimated: false,
                 errorMessageLabelHidden: true,
                 refreshButtonHidden: false,
                 titleLabelHidden: false,
@@ -134,6 +141,7 @@ struct StoryScreenViewData: Equatable {
             lhs.errorMessageLabelHidden == rhs.errorMessageLabelHidden &&
             lhs.backgroundButtonHidden == rhs.backgroundButtonHidden &&
             lhs.refreshButtonHidden == rhs.refreshButtonHidden &&
-            lhs.activityIndicatorAnimated == rhs.activityIndicatorAnimated
+            lhs.activityIndicatorAnimated == rhs.activityIndicatorAnimated &&
+            lhs.statusBarActivityIndicatorAnimated == rhs.statusBarActivityIndicatorAnimated
     }
 }
