@@ -15,7 +15,7 @@ import UIKit
  * entirely in code.
  */
 class StoryScreenViewController: UIViewController {
-    private let controller = StoryScreenController()
+    private let viewModel = StoryScreenViewModel()
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -27,10 +27,10 @@ class StoryScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller.onViewModelChange = { [weak self] (viewModel) in
-            self?.onViewModelChange(viewModel: viewModel)
+        viewModel.onViewUpdate = { [weak self] (viewData) in
+            self?.onViewUpdate(viewData: viewData)
         }
-        controller.onViewAppeared()
+        viewModel.onViewAppeared()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,18 +38,18 @@ class StoryScreenViewController: UIViewController {
     }
 
     @IBAction func onRefreshPressed(_ sender: AnyObject) {
-        controller.refresh()
+        viewModel.refresh()
     }
 
     @IBAction func onButtonPressed(_ sender: AnyObject) {
-        controller.onStoryPressed()
+        viewModel.onStoryPressed()
     }
 
-    private func onViewModelChange(viewModel: StoryScreenViewModel) {
+    private func onViewUpdate(viewData: StoryScreenViewData) {
         // Change state on main thread
         DispatchQueue.main.async(execute: { [unowned self] in
             // Set all view values based on the view model
-            if viewModel.activityIndicatorAnimated {
+            if viewData.activityIndicatorAnimated {
                 self.setNetworkActivityIndicator()
                 self.activityIndicator.startAnimating()
             } else {
@@ -57,17 +57,17 @@ class StoryScreenViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }
             // Text values
-            self.titleLabel.text = viewModel.titleLabelText
-            self.authorLabel.text = viewModel.authorLabelText
-            self.dateLabel.text = viewModel.dateLabelText
-            self.errorMessageLabel.text = viewModel.errorMessageText
+            self.titleLabel.text = viewData.titleLabelText
+            self.authorLabel.text = viewData.authorLabelText
+            self.dateLabel.text = viewData.dateLabelText
+            self.errorMessageLabel.text = viewData.errorMessageText
             // Which views are being displayed
-            self.errorMessageLabel.isHidden = viewModel.errorMessageLabelHidden
-            self.refreshButton.isHidden = viewModel.refreshButtonHidden
-            self.titleLabel.isHidden = viewModel.titleLabelHidden
-            self.authorLabel.isHidden = viewModel.authorLabelHidden
-            self.dateLabel.isHidden = viewModel.dateLabelHidden
-            self.backgroundButton.isHidden = viewModel.backgroundButtonHidden
+            self.errorMessageLabel.isHidden = viewData.errorMessageLabelHidden
+            self.refreshButton.isHidden = viewData.refreshButtonHidden
+            self.titleLabel.isHidden = viewData.titleLabelHidden
+            self.authorLabel.isHidden = viewData.authorLabelHidden
+            self.dateLabel.isHidden = viewData.dateLabelHidden
+            self.backgroundButton.isHidden = viewData.backgroundButtonHidden
         })
     }
 
