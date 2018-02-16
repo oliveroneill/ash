@@ -3,7 +3,6 @@
 //  AshTests
 //
 //  Created by Oliver ONeill on 11/2/18.
-//  Copyright © 2018 Oliver ONeill. All rights reserved.
 //
 
 import XCTest
