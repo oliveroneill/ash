@@ -88,9 +88,9 @@ class StoryScreenViewModel {
                     self.changeState(state: .error(AshConstants.genericErrorMessage))
                     return
                 }
-                // Update the state using view model
-                let viewModel = StoryViewData(story: s)
-                self.changeState(state: .loaded(viewModel))
+                // Update the state using new view data
+                let viewData = StoryViewData(story: s)
+                self.changeState(state: .loaded(viewData))
             })
         }
     }
