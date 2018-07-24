@@ -8,11 +8,10 @@
 import XCTest
 @testable import Ash
 
-/**
- * Test the API for retrieving stories.
- *
- * TODO: could also test requests are made correctly
- */
+
+/// Test the API for retrieving stories.
+///
+/// TODO: could also test requests are made correctly
 class HackerNewsAPITest: XCTestCase {
     /// Fake error case
     enum FakeError: Error {

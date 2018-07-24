@@ -7,13 +7,11 @@
 
 import UIKit
 
-/**
- * StoryScreenViewController shows a story that can be pressed to open in the
- * browser.
- *
- * TODO: don't use storyboards, I think this would be nicer to set up the views
- * entirely in code.
- */
+/// StoryScreenViewController shows a story that can be pressed to open in the
+/// browser.
+///
+/// TODO: don't use storyboards, I think this would be nicer to set up the views
+/// entirely in code.
 class StoryScreenViewController: UIViewController {
     private let viewModel = StoryScreenViewModel()
 

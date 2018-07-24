@@ -7,10 +7,8 @@
 
 import UIKit
 
-/**
- * A UIButton with rounded edges. This is rendered in storyboards and editable
- * within the Identity Inspector.
- */
+/// A UIButton with rounded edges. This is rendered in storyboards and editable
+/// within the Identity Inspector.
 @IBDesignable
 class RoundButton: UIButton {
     /// Keep track of the original background colour, so that it can be

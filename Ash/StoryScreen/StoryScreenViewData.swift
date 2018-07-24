@@ -15,9 +15,7 @@ enum StoryScreenState {
     case error(String)
 }
 
-/**
- * View data for a `Story`. This contains the presentation format for a `Story`
- */
+/// View data for a `Story`. This contains the presentation format for a `Story`
 struct StoryViewData: Equatable {
     let authorText: String
     let dateText: String
@@ -39,10 +37,8 @@ struct StoryViewData: Equatable {
     }
 }
 
-/**
- * View data for `StoryScreenViewController`. This is all the information needed
- * for the story screen
- */
+/// View data for `StoryScreenViewController`. This is all the information
+/// needed for the story screen
 struct StoryScreenViewData: Equatable {
     // Values
     let errorMessageText: String?

@@ -8,12 +8,11 @@
 import XCTest
 @testable import Ash
 
-/**
- * Test the view model.
- *
- * TODO: need better tests around going from one state to another
- * TODO: need better tests around verifying that the correct requests are made
- */
+///
+/// Test the view model.
+///
+/// TODO: need better tests around going from one state to another
+/// TODO: need better tests around verifying that the correct requests are made
 class StoryScreenViewModelTest: XCTestCase {
     /// Input that we'll test
     private let model = Story(

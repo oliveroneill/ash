@@ -27,11 +27,9 @@ struct Story : Codable {
 class HackerNewsAPI: StoryAPI {
     private let httpInterface: HttpInterface
 
-    /**
-     * Create a HackerNewsAPI.
-     *
-     * - Parameter httpInterface: The interface used to make network requests.
-     */
+    /// Create a HackerNewsAPI.
+    ///
+    /// - Parameter httpInterface: The interface used to make network requests.
     init(httpInterface: HttpInterface = HttpURLSessionWrapper()) {
         self.httpInterface = httpInterface
     }

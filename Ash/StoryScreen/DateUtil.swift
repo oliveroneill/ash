@@ -42,12 +42,10 @@ extension Date {
         ]
     }
 
-    /**
-     * Get how long ago this date was in human readable form, ie. the time since
-     * now.
-     *
-     * - Returns: human readable form of time between this date and now
-     */
+    /// Get how long ago this date was in human readable form, ie. the time
+    /// since now.
+    ///
+    /// - Returns: human readable form of time between this date and now
     func timeAgo() -> String {
         // Run through all of them items that make up this date. These are
         // all lazy loaded to ensure the latest date is used

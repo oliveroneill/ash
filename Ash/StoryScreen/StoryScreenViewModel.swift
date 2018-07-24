@@ -10,11 +10,9 @@ import UIKit
 struct AshConstants {
     static let genericErrorMessage = "Something went wrong."
 }
-/**
- * A view model for `StoryScreenViewController`. This contains the interaction
- * logic for the controller and sends `StoryScreenViewData`s to the
- * view-controller for presentation.
- */
+/// A view model for `StoryScreenViewController`. This contains the interaction
+/// logic for the controller and sends `StoryScreenViewData`s to the
+/// view-controller for presentation.
 class StoryScreenViewModel {
     /// Set this property to receive state change events
     var onViewUpdate: ((StoryScreenViewData) -> Void)?
@@ -22,32 +20,24 @@ class StoryScreenViewModel {
     // The current state of the view model
     private var currentState: StoryScreenState = .loading
 
-    /**
-     * Create a StoryScreenViewModel.
-     *
-     * - Parameter api: Used to interact with the network
-     */
+    /// Create a StoryScreenViewModel.
+    ///
+    /// - Parameter api: Used to interact with the network
     init(api: StoryAPI = HackerNewsAPI()) {
         self.api = api
     }
 
-    /**
-     * Called when the view is on screen
-     */
+    /// Called when the view is on screen
     func onViewAppeared() {
         loadNewStory()
     }
 
-    /**
-     * Refresh the currently displayed story
-     */
+    /// Refresh the currently displayed story
     func refresh() {
         loadNewStory()
     }
 
-    /**
-     * Called when a story is pressed. This should open the story in the browser
-     */
+    /// Called when a story is pressed. This should open the story in the browser
     func onStoryPressed() {
         // Ensure we've successfully loaded a story before allowing press
         if case .loaded(let story) = currentState {
